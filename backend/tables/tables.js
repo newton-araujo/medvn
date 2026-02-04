@@ -7,10 +7,15 @@ const users =  `
         CPF TEXT NOT NULL,
         register TEXT,
         tp_prest TEXT NOT NULL
-
     )
 `;
 export const patient = ``;
 
+const frequency = `
 
-export default users;
+    CREATE TABLE IF NOT EXISTS frequency (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tp_frequency TEXT NOT NULL
+    )
+`
+export {users,frequency}
