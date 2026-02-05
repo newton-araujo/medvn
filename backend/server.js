@@ -1,18 +1,35 @@
-import express from 'express';
-import db from './database/db.js'
-import users from './tables/tables.js'
+import express from "express";
+import userRoutes from "./routes/user.routes.js";
+import frequencyRoutes from "./routes/frequency.routes.js";
+import patientRoutes from "./routes/patient.routes.js";
+import medicationRoutes from "./routes/medication.routes.js";
+import db from "./database/db.js";
+import * as tables from "./tables/tables.js";
+
+db.run(tables.users);
+db.run(tables.frequency);
+db.run(tables.patient);
+db.run(tables.medication);
 
 const app = express();
+
+// middleware
 app.use(express.json());
 
-db.run(users)
+// rotas
+app.use("/user", userRoutes);
+app.use("/frequency", frequencyRoutes);
+app.use("/patient", patientRoutes);
+app.use("/medication", medicationRoutes);
 
-console.log(users)
+app.get("/", (req, res) => {
+  res.send("Servidor online 🚀");
+});
 
-app.get('/api', (req,res) => {
-    res.send("Api rodando")
-})
-
+// servidor
 app.listen(3000, () => {
-    console.log('servidor rodando em http://localhost:3000')
-})
+  console.log("Servidor rodando em http://localhost:3000");
+});
+
+
+
