@@ -28,3 +28,5 @@ export function createFrequency(req, res) {
     });
   });
 }
+
+//falta read update e delete

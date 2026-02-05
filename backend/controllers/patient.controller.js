@@ -29,3 +29,5 @@ export function createPatient(req, res) {
   });
 }
 
+
+//falta read update e delete

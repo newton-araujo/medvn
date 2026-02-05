@@ -6,4 +6,6 @@ const router = Router();
 //metodo post 
 router.post("/", createPatient);
 
+
+
 export default router;

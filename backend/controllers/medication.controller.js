@@ -29,3 +29,4 @@ export function createMedication(req, res) {
   });
 }
 
+//falta read update e delete
