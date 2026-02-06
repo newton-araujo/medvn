@@ -29,6 +29,7 @@ export function createUser(req, res) {
   });
 }
 
+//read
 export function search_ID(req, res) {
   const { cpf } = req.params;
 
@@ -82,8 +83,47 @@ export function delete_user (req, res) {
       }
 
   })
-
-
 }
 
-//falta update e delete
+//update user 
+//patch para fazer atuaalizacao parcial
+export function userATT(req, res) {
+  const { cpf } = req.params;
+  const fields = [];
+  const values = [];
+
+  if (!cpf) {
+    return res.status(400).json({ erro: "CPF é obrigatório" });
+  }
+
+  Object.entries(req.body).forEach(([key, value]) => {
+    fields.push(`${key} = ?`);
+    values.push(value);
+  });
+
+  if (fields.length === 0) {
+    return res.status(400).json({ erro: "Nenhum campo para atualizar" });
+  }
+
+  const sql = `
+    UPDATE users
+    SET ${fields.join(", ")}
+    WHERE cpf = ?
+  `;
+
+  values.push(cpf);
+
+  db.run(sql, values, function (err) {
+    if (err) {
+      return res.status(500).json({ erro: err.message });
+    }
+
+    if (this.changes === 0) {
+      return res.status(404).json({ erro: "Usuário não encontrado" });
+    }
+
+    return res.status(200).json({
+      mensagem: "Usuário atualizado com sucesso"
+    });
+  });
+}

@@ -1,7 +1,8 @@
 import sqlite3 from "sqlite3";
 import path from "path";
 
-const dbPath = path.resolve(process.cwd(), "./database/mednv.db");
+const dbPath = path.resolve(process.cwd(), "./backend/database/mednv.db");
+// const dbPath = path.resolve(process.cwd(), "./database/mednv.db"); NEWTON
 
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {

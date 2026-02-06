@@ -4,6 +4,7 @@ import {
   search_ID,
   list_users,
   delete_user,
+  userATT
 } from "../controllers/user.controller.js";
 
 const router = Router();
@@ -17,5 +18,8 @@ router.get("/", list_users);
 
 //metodo delete
 router.delete("/delete_user/:cpf", delete_user);
+
+//metodo update/patch
+router.patch("/:cpf", userATT);
 
 export default router;
