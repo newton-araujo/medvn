@@ -1,7 +1,7 @@
 import sqlite3 from "sqlite3";
 import path from "path";
 
-const dbPath = path.resolve(process.cwd(), "backend/database/mednv.db");
+const dbPath = path.resolve(process.cwd(), "./database/mednv.db");
 
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
@@ -10,6 +10,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
     console.log("Banco de dados conectado com sucesso");
   }
 });
+
 
 export default db;
 

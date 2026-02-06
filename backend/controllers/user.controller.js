@@ -30,11 +30,11 @@ export function createUser(req, res) {
 }
 
 export function search_ID(req, res) {
-  const { id } = req.params;
+  const { cpf } = req.params;
 
-  const sql = "SELECT * FROM users WHERE id = ?";
+  const sql = "SELECT * FROM users WHERE cpf = ?";
 
-  db.get(sql, [id], (err, user) => {
+  db.get(sql, [cpf], (err, user) => {
     if (err) {
       return res.status(500).json({
         erro: err.message
@@ -64,6 +64,26 @@ export function list_users(req, res) {
 
     return res.status(200).json(rows);
   });
+}
+
+
+//Deleted user
+
+export function delete_user (req, res) {
+
+  const sql = "DELETE FROM users WHERE cpf = ?";
+  
+  db.run(sql,[req.params.cpf], (err) => {
+
+      if(err) {
+        return res.status(500).json(err);
+      } else {
+         return res.status(200).json({message:"Usuaário deletado com sucesso"})
+      }
+
+  })
+
+
 }
 
 //falta update e delete

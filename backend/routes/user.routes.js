@@ -1,7 +1,10 @@
 import { Router } from "express";
-import { createUser } from "../controllers/user.controller.js";
-import { search_ID } from "../controllers/user.controller.js";
-import { list_users } from "../controllers/user.controller.js";
+import {
+  createUser,
+  search_ID,
+  list_users,
+  delete_user,
+} from "../controllers/user.controller.js";
 
 const router = Router();
 
@@ -9,8 +12,10 @@ const router = Router();
 router.post("/", createUser);
 
 //metodo get
-router.get("/:id", search_ID);
+router.get("/search_user/:cpf", search_ID);
 router.get("/", list_users);
 
-export default router;
+//metodo delete
+router.delete("/delete_user/:cpf", delete_user);
 
+export default router;

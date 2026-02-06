@@ -4,8 +4,8 @@ const users =  `
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         dt_birth DATE NOT NULL,
-        CPF TEXT NOT NULL,
-        register TEXT,
+        CPF TEXT NOT NULL UNIQUE,
+        register TEXT NOT NULL UNIQUE,
         tp_prest TEXT NOT NULL
     )
 `;
@@ -17,7 +17,7 @@ const patient = `
     name TEXT NOT NULL,
     name_mother TEXT NOT NULL,
     dt_birth DATE NOT NULL,
-    CPF TEXT NOT NULL
+    CPF TEXT NOT NULL UNIQUE
     )
 `;
 
