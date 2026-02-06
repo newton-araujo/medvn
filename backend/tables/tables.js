@@ -39,5 +39,23 @@ const medication = `
     )
 `
 
+const product = `
+    CREATE TABLE IF NOT EXISTS product (
+    id_prod INTEGER PRIMARY KEY AUTOINCREMENT,
+    desc_product TEXT NOT NULL,
+    dt_maturity TEXT NOT NULL, 
+    amount INTEGER NOT NULL
+);
+`
 
-export {users,frequency, patient, medication}
+const item_presc = `
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_prod INTEGER NOT NULL,
+    desc_item TEXT NOT NULL,
+    active INTEGER NOT NULL, 
+    FOREIGN KEY (id_prod) REFERENCES product(id_prod)
+`
+
+
+
+export {users,frequency, patient, medication, product, item_presc}
